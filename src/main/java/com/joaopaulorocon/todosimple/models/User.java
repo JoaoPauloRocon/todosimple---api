@@ -1,9 +1,10 @@
 package com.joaopaulorocon.todosimple.models;
 
-
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,11 +47,14 @@ public class User {
     @Size(groups = {CreateUser.class, Update.class},min = 8, max = 60)
     private String password;
 
-    //private List<Task> tasks = new ArrayList<Task>();
+    @ElementCollection
+    private List<Task> tasks;
 
 
     public User() {
     }
+
+
 
     public User(Long id, String userName, String password) {
         this.id = id;
@@ -98,6 +102,12 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, userName, password);
+    }
+
+
+
+    public List<Task> getTasks() {
+        return this.tasks;
     }
 
 
