@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.sql.Update;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -105,7 +107,7 @@ public class User {
     }
 
 
-
+    @JsonIgnore
     public List<Task> getTasks() {
         return this.tasks;
     }

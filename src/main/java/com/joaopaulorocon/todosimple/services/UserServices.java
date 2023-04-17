@@ -36,13 +36,14 @@ public class UserServices {
         return this.userRepository.save(newObj);
     }
 
-    public void delete(Long id){
+    public User delete(Long id){
         findById(id);
         try {
             this.userRepository.deleteById(id);
         } catch (Exception e) {
             throw new RuntimeException("Não é possível excluir pois há entidades relacionadas a este usuário!!");
         }
+        return null;
     }
 
 }
