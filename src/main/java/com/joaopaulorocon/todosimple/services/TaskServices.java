@@ -1,17 +1,20 @@
 package com.joaopaulorocon.todosimple.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.joaopaulorocon.todosimple.models.Task;
 import com.joaopaulorocon.todosimple.models.User;
 import com.joaopaulorocon.todosimple.repositores.TasksRepository;
 
+@Service
 public class TaskServices {
     
-   
     
     @Autowired
     private TasksRepository tasksRepository;
@@ -39,6 +42,11 @@ public class TaskServices {
         Task newObj = findById(obj.getId());
         newObj.setDescripition(obj.getDescripition());
         return this.tasksRepository.save(newObj);
+    }
+
+    public List <Task>  findAllById(Long userId){
+        List<Task> tasks = this.tasksRepository.findByUser_Id(userId);
+        return tasks;
     }
 
     public void delete(Long id){
